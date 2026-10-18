@@ -3,266 +3,196 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b13">
 <title>Brainrot Battle</title>
 <style>
-:root {
-  --bg:#080812;
-  --panel:#141426;
-  --line:#30264d;
-  --purple:#8b43ff;
-  --pink:#ef42ff;
-  --gold:#ffca58;
-  --text:#f7f3ff;
-  --muted:#aaa3c3;
-}
+:root{--bg:#090b13;--panel:#121622;--line:#292f43;--blue:#4c8dff;--purple:#9a55ff;--gold:#ffd36a;--text:#f4f6ff;--muted:#8f9ab3}
 *{box-sizing:border-box}
-body{
-  margin:0;background:
-  radial-gradient(ellipse at 50% 0%,#29134d 0%,transparent 48%),
-  var(--bg);color:var(--text);
-  font-family:Arial,sans-serif;min-height:100vh
-}
-header{
-  padding:18px 16px;display:flex;justify-content:space-between;
-  align-items:center;border-bottom:1px solid var(--line);
-  background:#0a0917d9;position:sticky;top:0;z-index:5
-}
-.logo{font-size:19px;font-weight:900;letter-spacing:1px}
-.logo span{color:var(--pink)}
-.balance{
-  background:#1a1530;border:1px solid #6040a0;
-  padding:10px 12px;border-radius:12px;font-weight:bold
-}
-main{max-width:1050px;margin:auto;padding:25px 15px 50px}
-.hero{text-align:center;padding:22px 0 25px}
-.eyebrow{color:var(--pink);font-size:12px;letter-spacing:4px;font-weight:bold}
-h1{font-size:clamp(34px,8vw,58px);margin:12px 0}
-h1 span{color:var(--purple)}
-.subtitle{color:var(--muted);line-height:1.6}
-.section-title{font-size:22px;margin:25px 0 15px}
-.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.case{
-  background:linear-gradient(145deg,#1d1733,#10101e);
-  border:1px solid var(--line);border-radius:18px;
-  padding:16px 12px;text-align:center;min-width:0;
-  transition:.2s
-}
-.case.selected{border-color:var(--pink);box-shadow:0 0 22px #a52cff35}
-.art{
-  height:105px;display:grid;place-items:center;
-  font-size:58px;border-radius:13px;
-  background:radial-gradient(circle,#42236c,#171226 70%);
-  margin-bottom:13px
-}
-.case h3{margin:8px 0;font-size:16px}
-.tag{font-size:10px;color:#e5bdff;letter-spacing:2px;font-weight:bold}
-.price{margin:12px 0;font-weight:bold;color:var(--gold)}
-button{
-  border:0;border-radius:11px;padding:12px 10px;
-  color:white;background:linear-gradient(100deg,#7738ed,#c32ce9);
-  font-size:13px;font-weight:bold;cursor:pointer;width:100%
-}
-button:disabled{opacity:.45;cursor:not-allowed}
-.secondary{background:#242039;border:1px solid #463766}
-.opening{
-  display:none;margin-top:22px;padding:20px 14px;
-  border:1px solid var(--line);background:var(--panel);
-  border-radius:18px;text-align:center
-}
-.opening.show{display:block}
-.roulette{
-  height:155px;display:grid;place-items:center;
-  font-size:70px;border-radius:14px;
-  background:radial-gradient(circle,#42205e,#10101e);
-  margin:15px 0;overflow:hidden
-}
-.roulette.spin{animation:pulse .22s infinite alternate}
-@keyframes pulse{from{transform:scale(.98);filter:brightness(.8)}
-to{transform:scale(1.02);filter:brightness(1.5)}}
-.result-name{font-size:21px;font-weight:900;margin:12px}
-.result-rarity{color:var(--gold);font-size:12px;letter-spacing:3px}
-.actions{display:flex;gap:10px;margin-top:15px}
-.actions button{flex:1}
-.note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:25px}
-footer{text-align:center;color:#726a8c;font-size:12px;padding:20px}
-@media(min-width:650px){.cases{grid-template-columns:repeat(4,minmax(0,1fr))}.case{padding:20px 14px}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+button{cursor:pointer;border:0;font-weight:800;color:white;border-radius:10px;padding:12px;background:linear-gradient(100deg,#326eff,#9145ff)}
+button:disabled{opacity:.45}
+header{display:flex;align-items:center;justify-content:space-between;padding:15px max(14px,calc((100% - 1100px)/2));background:#10131deF;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.logo{font-weight:1000;font-size:18px;letter-spacing:.5px}.logo span{color:#8b75ff}
+.balance{background:#202538;border:1px solid #343d56;padding:10px;border-radius:10px;font-weight:bold}
+main{max-width:1100px;margin:auto;padding:20px 14px 50px}
+.hero{padding:22px 0;text-align:center}
+.hero small{letter-spacing:4px;color:#9c7bff;font-weight:bold}
+h1{font-size:clamp(30px,7vw,48px);margin:12px 0}
+.sub{color:var(--muted);font-size:14px;line-height:1.5}
+h2{font-size:21px;margin:25px 0 14px}
+.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:15px}
+.tabs button{white-space:nowrap;background:#171c2a;border:1px solid var(--line)}
+.tabs button.active{background:#5130a0;border-color:#a477ff}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:linear-gradient(145deg,#171d2b,#10131d);border:1px solid var(--line);border-radius:15px;padding:12px;min-width:0}
+.card.selected{border-color:#a16aff;box-shadow:0 0 20px #7940ff25}
+.art{height:120px;border-radius:11px;background:radial-gradient(ellipse,#303f71,#171b2a 72%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;margin-bottom:12px}
+.art:before{content:"";position:absolute;width:90px;height:90px;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 35px #8658ff30}
+.figure{font-size:55px;filter:drop-shadow(0 8px 9px #0009);position:relative}
+.rarity{font-size:10px;font-weight:900;letter-spacing:2px;color:#b99aff}
+.name{font-size:15px;font-weight:900;margin:8px 0}
+.price{color:var(--gold);font-weight:bold;margin:12px 0;font-size:14px}
+.card button{width:100%;font-size:12px}
+.small{font-size:11px;color:var(--muted);line-height:1.5}
+#opening{display:none;margin-top:18px;background:#101521;border:1px solid #40345e;border-radius:16px;padding:15px;overflow:hidden}
+#opening.show{display:block}
+.roulette-window{position:relative;overflow:hidden;background:#090d17;border:1px solid #343c53;border-radius:12px;margin:15px 0}
+.pointer{position:absolute;z-index:3;left:50%;top:0;bottom:0;width:3px;background:var(--gold);box-shadow:0 0 13px var(--gold)}
+.track{display:flex;gap:9px;padding:10px;width:max-content;transform:translateX(0)}
+.tile{width:105px;height:125px;flex:0 0 105px;border:1px solid #39435c;border-radius:10px;background:#171e2d;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px}
+.tile .figure{font-size:38px}.tile b{font-size:10px;text-align:center}
+#result{text-align:center;min-height:28px;font-weight:900;margin:12px 0}
+.actions{display:flex;gap:10px}.actions button{flex:1}
+.secondary{background:#222a3b}
+.inventory-row{display:flex;align-items:center;gap:10px;margin:9px 0;padding:10px;background:#151b29;border:1px solid var(--line);border-radius:12px}
+.inventory-row .figure{font-size:32px}.inventory-row .info{flex:1;min-width:0}
+.inventory-row .name{overflow-wrap:anywhere}
+.mutation{color:#72e7ff;font-size:10px;font-weight:bold;letter-spacing:1px}
+footer{padding:20px;text-align:center;color:#626d85;font-size:11px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.art{height:150px}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">BRAINROT <span>BATTLE</span></div>
-  <div class="balance">🪙 <span id="balance">10000</span></div>
+ <div class="logo">BRAINROT <span>BATTLE</span></div>
+ <div class="balance">🪙 <span id="balance">10000</span></div>
 </header>
 <main>
-  <section class="hero">
-    <div class="eyebrow">ONLY THE RAREST</div>
-    <h1>OPEN <span>CASES</span></h1>
-    <div class="subtitle">Только SECRET и OG. Охоться за самыми редкими.</div>
-  </section>
+ <section class="hero">
+  <small>SECRET • OG • MUTATIONS</small>
+  <h1>OPEN YOUR <span style="color:#a78bff">LUCK</span></h1>
+  <div class="sub">Только SECRET и OG. Открывай кейсы и собирай редкую коллекцию.</div>
+ </section>
 
-  <h2 class="section-title">Выбери свой кейс</h2>
-  <div class="cases" id="cases"></div>
+ <h2>Кейсы</h2>
+ <div class="tabs">
+  <button class="active" data-filter="ALL">Все кейсы</button>
+  <button data-filter="SECRET">SECRET</button>
+  <button data-filter="OG">OG ONLY</button>
+ </div>
+ <div class="grid" id="cases"></div>
 
-  <section class="opening" id="opening">
-    <div class="tag">CASE OPENING</div>
-    <div class="roulette" id="art">🔒</div>
-    <div class="result-name" id="result">Открываем кейс...</div>
-    <div class="result-rarity" id="rarity"></div>
-    <div class="actions" id="actions" style="display:none">
-      <button id="sell">ПРОДАТЬ</button>
-      <button class="secondary" id="keep">ОСТАВИТЬ</button>
-    </div>
-  </section>
+ <section id="opening">
+  <div class="rarity" style="text-align:center">CASE ROULETTE</div>
+  <h2 id="openingTitle" style="text-align:center;margin:8px">Открытие кейса</h2>
+  <div class="roulette-window">
+   <div class="pointer"></div>
+   <div class="track" id="track"></div>
+  </div>
+  <div id="result">Готов к открытию?</div>
+  <div id="resultMeta" class="sub" style="text-align:center"></div>
+  <div class="actions" id="actions" style="display:none;margin-top:15px">
+   <button id="sellWon">ПРОДАТЬ</button>
+   <button id="keepWon" class="secondary">ОСТАВИТЬ</button>
+  </div>
+ </section>
 
-  <h2 class="section-title">Мой инвентарь</h2>
-  <div class="case" id="inventory">Пока пусто. Открой свой первый кейс!</div>
-
-  <p class="note">
-    Демонстрационный прототип. Монеты и предметы хранятся только в текущей
-    сессии браузера. Реальные платежи, выводы и передача предметов не подключены.
-  </p>
+ <h2>Мой инвентарь <span class="small" id="count"></span></h2>
+ <div id="inventory" class="card"><div class="sub">Пока пусто. Открой первый кейс!</div></div>
+ <h2>Пополнение</h2>
+ <div class="card">
+  <div class="sub">Демонстрационный баланс: 10 000 монет. Реальные платежи пока не подключены.</div>
+  <button id="demoTopup" style="margin-top:12px">+ 1 000 тестовых монет</button>
+ </div>
+ <p class="small" style="margin-top:24px">Прототип: баланс и предметы существуют только в текущей сессии браузера. Для реальных платежей, серверного сохранения и передачи предметов требуется отдельный backend.</p>
 </main>
-<footer> BRAINROT BATTLE · SECRET / OG ONLY </footer>
-
+<footer>BRAINROT BATTLE · FAN-MADE PROTOTYPE</footer>
 <script>
-const cases = [
-  {id:1,name:"SECRET CASE",rarity:"SECRET",price:500,art:"💜"},
-  {id:2,name:"ELITE SECRET",rarity:"SECRET",price:1500,art:"🔮"},
-  {id:3,name:"MYTHIC SECRET",rarity:"SECRET",price:4000,art:"🌌"},
-  {id:4,name:"OG SUPREME",rarity:"OG",price:10000,art:"👑"}
+const cases=[
+{id:1,name:"Secret Starter",rarity:"SECRET",price:500,art:"🔮"},
+{id:2,name:"Secret Hunter",rarity:"SECRET",price:1500,art:"🟣"},
+{id:3,name:"Secret Legends",rarity:"SECRET",price:4000,art:"🌌"},
+{id:4,name:"Secret Godlike",rarity:"SECRET",price:8000,art:"💠"},
+{id:5,name:"OG Vault",rarity:"OG",price:15000,art:"👑"},
+{id:6,name:"OG Infinity",rarity:"OG",price:30000,art:"🌠"}
 ];
-
-// Демонстрационные имена и цены, не официальные игровые оценки.
-const drops = [
-  {name:"Secret Phantom",rarity:"SECRET",art:"👾",value:800},
-  {name:"Secret Overlord",rarity:"SECRET",art:"👹",value:1800},
-  {name:"Secret Void King",rarity:"SECRET",art:"🌑",value:4500},
-  {name:"OG Eternal",rarity:"OG",art:"👑",value:25000},
-  {name:"OG Cosmic",rarity:"OG",art:"🌠",value:50000}
+// Прототипные названия, символы и цены — не официальные игровые данные.
+const drops=[
+{name:"Secret Phantom",rarity:"SECRET",art:"👾",value:800,mutation:"Normal"},
+{name:"Secret Overlord",rarity:"SECRET",art:"👹",value:1800,mutation:"Gold"},
+{name:"Secret Void",rarity:"SECRET",art:"🌑",value:4500,mutation:"Diamond"},
+{name:"Secret Eclipse",rarity:"SECRET",art:"🪬",value:7000,mutation:"Rainbow"},
+{name:"OG Eternal",rarity:"OG",art:"👑",value:25000,mutation:"Gold"},
+{name:"OG Cosmic",rarity:"OG",art:"🌠",value:50000,mutation:"Diamond"},
+{name:"OG Genesis",rarity:"OG",art:"💎",value:100000,mutation:"Rainbow"}
 ];
-
-let balance = 10000;
-let inventory = [];
-let selected = cases[0];
-let busy = false;
-
-const $ = id => document.getElementById(id);
+let balance=10000,inventory=[],selected=null,busy=false,won=null,filter="ALL";
+const $=id=>document.getElementById(id);
+function money(n){return n.toLocaleString("ru-RU")}
+function updateBalance(){$("balance").textContent=money(balance)}
+function poolFor(c){return c.rarity==="OG"?drops.filter(d=>d.rarity==="OG"):drops.filter(d=>d.rarity==="SECRET")}
 function renderCases(){
-  $("cases").innerHTML = cases.map(c => `
-    <div class="case ${selected.id===c.id?'selected':''}">
-      <div class="art">${c.art}</div>
-      <div class="tag">${c.rarity} ONLY</div>
-      <h3>${c.name}</h3>
-      <div class="price">🪙 ${c.price.toLocaleString("ru-RU")}</div>
-      <button data-case="${c.id}" ${busy?'disabled':''}>ВЫБРАТЬ</button>
-    </div>`).join("");
-  document.querySelectorAll("[data-case]").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      selected=cases.find(c=>c.id===Number(btn.dataset.case));
-      renderCases();
-      openCase();
-    });
-  });
+ $("cases").innerHTML=cases.filter(c=>filter==="ALL"||c.rarity===filter).map(c=>`
+ <div class="card ${selected&&selected.id===c.id?"selected":""}">
+  <div class="art"><span class="figure">${c.art}</span></div>
+  <div class="rarity">${c.rarity} CASE</div>
+  <div class="name">${c.name}</div>
+  <div class="price">🪙 ${money(c.price)}</div>
+  <button data-open="${c.id}" ${busy?"disabled":""}>ОТКРЫТЬ</button>
+ </div>`).join("");
+ document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openCase(Number(b.dataset.open)));
 }
-function updateBalance(){ $("balance").textContent=balance.toLocaleString("ru-RU"); }
+document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{
+ filter=b.dataset.filter;
+ document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));
+ renderCases();
+});
 function renderInventory(){
-  if(!inventory.length){$("inventory").textContent="Пока пусто. Открой свой первый кейс!";return;}
-  $("inventory").innerHTML=inventory.map((d,i)=>`
-    <div style="display:flex;align-items:center;gap:12px;text-align:left;padding:10px;border-bottom:1px solid #30264d">
-      <span style="font-size:30px">${d.art}</span>
-      <div style="flex:1"><b>${d.name}</b><div class="tag">${d.rarity}</div></div>
-      <b style="color:#ffca58">${d.value.toLocaleString("ru-RU")}</b>
-      <button data-sell="${i}" style="width:auto">Продать</button>
-    </div>`).join("");
-  document.querySelectorAll("[data-sell]").forEach(btn=>{
-    btn.addEventListener("click",()=>sellItem(Number(btn.dataset.sell)));
-  });
+ $("count")=""; 
+ $("count").textContent=inventory.length?"("+inventory.length+")":"";
+ if(!inventory.length){$("inventory").innerHTML='<div class="sub">Пока пусто. Открой первый кейс!</div>';return}
+ $("inventory").innerHTML=inventory.map((d,i)=>`
+ <div class="inventory-row">
+  <span class="figure">${d.art}</span>
+  <div class="info"><div class="name">${d.name}</div><div class="rarity">${d.rarity}</div><div class="mutation">${d.mutation}</div><div class="small">Цена: 🪙 ${money(d.value)}</div></div>
+  <button data-sell="${i}" style="padding:10px">Продать</button>
+ </div>`).join("");
+ document.querySelectorAll("[data-sell]").forEach(b=>b.onclick=()=>sellItem(Number(b.dataset.sell)));
 }
-function openCase(){
-  if(busy)return;
-  if(balance<selected.price){alert("Недостаточно монет для этого кейса!");return;}
-  balance-=selected.price;updateBalance();
-  busy=true;renderCases();
-  $("opening").classList.add("show");
-  $("actions").style.display="none";
-  $("art").classList.add("spin");
-  $("art").textContent="✨";
-  $("result").textContent="Кейс открывается...";
-  $("rarity").textContent="";
-  const pool=selected.rarity==="OG"?drops.filter(d=>d.rarity==="OG"):drops;
-  const drop=pool[Math.floor(Math.random()*pool.length)];
-  setTimeout(()=>{
-    $("art").classList.remove("spin");
-    $("art").textContent=drop.art;
-    $("result").textContent=drop.name;
-    $("rarity").textContent=drop.rarity;
-    inventory.unshift(drop);
-    renderInventory();
-    $("actions").style.display="flex";
-    $("sell").onclick=()=>sellItem(inventory.indexOf(drop));
-    $("keep").onclick=()=>{
-      $("actions").style.display="none";
-      $("result").textContent=drop.name+" — в инвентаре!";
-    };
-    busy=false;renderCases();
-  },1800);
+function sellItem(i){
+ if(i<0||i>=inventory.length)return;
+ balance+=inventory[i].value;inventory.splice(i,1);
+ updateBalance();renderInventory();
 }
-function sellItem(index){
-  if(index<0||index>=inventory.length)return;
-  const item=inventory.splice(index,1)[0];
-  balance+=item.value;updateBalance();renderInventory();
-  $("actions").style.display="none";
-  $("result").textContent=item.name+" продан!";
+function openCase(id){
+ if(busy)return;
+ selected=cases.find(c=>c.id===id);
+ if(balance<selected.price){alert("Недостаточно монет!");return}
+ balance-=selected.price;updateBalance();busy=true;won=null;
+ $("opening").classList.add("show");$("openingTitle").textContent=selected.name;
+ $("actions").style.display="none";$("result").textContent="Рулетка вращается...";
+ $("resultMeta").textContent="Удачи!";
+ renderCases();
+ const pool=poolFor(selected);
+ // Сначала формируем результат, затем помещаем его в выбранную позицию рулетки.
+ const drop=pool[Math.floor(Math.random()*pool.length)];
+ const total=42,winIndex=34,items=[];
+ for(let i=0;i<total;i++){
+   const d=i===winIndex?drop:pool[Math.floor(Math.random()*pool.length)];
+   items.push(d);
+ }
+ $("track").innerHTML=items.map(d=>`<div class="tile"><span class="figure">${d.art}</span><b>${d.name}</b><span class="rarity">${d.rarity}</span></div>`).join("");
+ const track=$("track"),winTile=track.children[winIndex],windowBox=track.parentElement;
+ track.style.transition="none";track.style.transform="translateX(0)";
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   const target=winTile.offsetLeft+winTile.offsetWidth/2-windowBox.clientWidth/2;
+   track.style.transition="transform 5s cubic-bezier(.08,.68,.12,1)";
+   track.style.transform=`translateX(${-target}px)`;
+ }));
+ setTimeout(()=>{
+   won={...drop,id:Date.now()+Math.random()};
+   inventory.unshift(won);renderInventory();
+   $("result").textContent=drop.name;
+   $("resultMeta").textContent=drop.rarity+" · "+drop.mutation+" · 🪙 "+money(drop.value);
+   $("actions").style.display="flex";
+   $("sellWon").onclick=()=>{const i=inventory.findIndex(x=>x.id===won.id);if(i>=0)sellItem(i);$("actions").style.display="none";$("result").textContent="Предмет продан!";};
+   $("keepWon").onclick=()=>{$("actions").style.display="none";$("result").textContent="Предмет сохранён в инвентаре";};
+   busy=false;renderCases();
+ },5200);
 }
-renderCases();updateBalance();renderInventory();
+$("demoTopup").onclick=()=>{balance+=1000;updateBalance();};
+renderCases();renderInventory();updateBalance();
 </script>
 </body>
-  </html>
-<style>
-/* Рулетка брейнротов */
-.roulette-track {
-  display: flex;
-  gap: 12px;
-  width: max-content;
-  padding: 12px;
-  will-change: transform;
-}
-.roulette-card {
-  flex: 0 0 110px;
-  height: 125px;
-  border: 1px solid #7544c9;
-  border-radius: 14px;
-  background: linear-gradient(160deg,#292047,#10101e);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: white;
-  font-weight: bold;
-}
-.roulette-card .emoji {
-  font-size: 38px;
-}
-.roulette-window {
-  overflow: hidden;
-  position: relative;
-  border-radius: 14px;
-  border: 1px solid #8b43ff;
-  background: #090914;
-}
-.roulette-pointer {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 3px;
-  background: #ffca58;
-  box-shadow: 0 0 12px #ffca58;
-  pointer-events: none;
-}
-</style>
 </html>
-
