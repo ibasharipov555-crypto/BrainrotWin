@@ -219,4 +219,50 @@ renderCases();updateBalance();renderInventory();
 </script>
 </body>
   </html>
-  
+<style>
+/* Рулетка брейнротов */
+.roulette-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  padding: 12px;
+  will-change: transform;
+}
+.roulette-card {
+  flex: 0 0 110px;
+  height: 125px;
+  border: 1px solid #7544c9;
+  border-radius: 14px;
+  background: linear-gradient(160deg,#292047,#10101e);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: white;
+  font-weight: bold;
+}
+.roulette-card .emoji {
+  font-size: 38px;
+}
+.roulette-window {
+  overflow: hidden;
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid #8b43ff;
+  background: #090914;
+}
+.roulette-pointer {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: #ffca58;
+  box-shadow: 0 0 12px #ffca58;
+  pointer-events: none;
+}
+</style>
+</html>
+
